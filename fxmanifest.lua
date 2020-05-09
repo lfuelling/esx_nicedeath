@@ -5,7 +5,7 @@ game 'gta5'
 name 'esx_nicedeath'
 description 'esx death fx and cooldown'
 
-version '1.0.0'
+version '1.0.1'
 
 server_scripts {
 	'config.lua',

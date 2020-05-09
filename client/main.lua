@@ -72,6 +72,8 @@ function RespawnPed(ped, coords, heading)
     NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
     SetPlayerInvincible(ped, false)
     ClearPedBloodDamage(ped)
+    ClearPedLastDamageBone(ped)
+    ClearPedTasks(ped)
 
     TriggerServerEvent('esx:onPlayerSpawn')
     TriggerEvent('esx:onPlayerSpawn')
