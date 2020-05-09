@@ -1,5 +1,6 @@
 ESX = nil
 local isDead = false
+local soundPlaying = false
 
 --- Thread to get the ESX object
 Citizen.CreateThread(function()
@@ -105,6 +106,39 @@ function formatTimer(seconds)
     end
 end
 
+function PlaySoundAndShowMessage()
+    Citizen.CreateThread(function()
+        while isDead do
+            if not soundPlaying then
+                PlaySoundFrontend(-1, "Bed", "WastedSounds", 1)
+                soundPlaying = true
+            end
+
+            local wastedMessage = RequestScaleformMovie("MP_BIG_MESSAGE_FREEMODE")
+
+            if HasScaleformMovieLoaded(wastedMessage) then
+                Citizen.Wait(0)
+
+                PushScaleformMovieFunction(wastedMessage, "SHOW_SHARD_WASTED_MP_MESSAGE")
+                BeginTextComponent("STRING")
+                AddTextComponentString("~r~" .. _U('wasted'))
+                EndTextComponent()
+                PopScaleformMovieFunctionVoid()
+
+                Citizen.Wait(500)
+
+                PlaySoundFrontend(-1, "TextHit", "WastedSounds", 1)
+                while isDead do
+                    DrawScaleformMovieFullscreen(wastedMessage, 255, 255, 255, 255)
+                    Citizen.Wait(0)
+                end
+
+                soundPlaying = false
+            end
+        end
+    end)
+end
+
 --- Respawn event handler
 AddEventHandler('esx:onPlayerSpawn', function()
     isDead = false
@@ -114,6 +148,9 @@ end)
 AddEventHandler('esx:onPlayerDeath', function(data)
     isDead = true
     ESX.UI.Menu.CloseAll()
-    StartRespawnTimer()
     StartScreenEffect('DeathFailOut', 0, false)
+    ShakeGameplayCam("DEATH_FAIL_IN_EFFECT_SHAKE", 1)
+
+    PlaySoundAndShowMessage()
+    StartRespawnTimer()
 end)
