@@ -19,6 +19,3 @@ This plugin has the following features:
         - Old: `if (diedAt and (math.abs(GetTimeDifference(GetGameTimer(), diedAt)) > 2000)) or respawnForced then`
         - New: `if respawnForced then`
     3. Remember to redo this once you update the `server-data` repo!
-
-
-
