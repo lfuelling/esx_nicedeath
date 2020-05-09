@@ -61,6 +61,7 @@ function doRespawn()
             ESX.SetPlayerData('loadout', {})
             RespawnPed(PlayerPedId(), Config.RespawnPoint.coords, Config.RespawnPoint.heading)
             StopScreenEffect('DeathFailOut')
+            Citizen.Wait(350) -- wait tree fiddy for screen to build
             DoScreenFadeIn(800)
         end)
     end)
