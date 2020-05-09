@@ -57,6 +57,7 @@ function doRespawn()
             Citizen.Wait(10)
         end
         ESX.TriggerServerCallback('esx_nicedeath:onDeath', function()
+            isDead = false
             ESX.SetPlayerData('loadout', {})
             RespawnPed(PlayerPedId(), Config.RespawnPoint.coords, Config.RespawnPoint.heading)
             StopScreenEffect('DeathFailOut')
@@ -108,41 +109,29 @@ end
 
 function PlaySoundAndShowMessage()
     Citizen.CreateThread(function()
+
+        PlaySoundFrontend(-1, "Bed", "WastedSounds", 1)
+
+        local wastedMessage = RequestScaleformMovie("MP_BIG_MESSAGE_FREEMODE")
+
+        while not HasScaleformMovieLoaded(wastedMessage) do
+            Citizen.Wait(0)
+        end
+        PushScaleformMovieFunction(wastedMessage, "SHOW_SHARD_WASTED_MP_MESSAGE")
+        BeginTextComponent("STRING")
+        AddTextComponentString("~r~" .. _U('wasted'))
+        EndTextComponent()
+        PopScaleformMovieFunctionVoid()
+
+        Citizen.Wait(500)
+
+        PlaySoundFrontend(-1, "TextHit", "WastedSounds", 1)
         while isDead do
-            if not soundPlaying then
-                PlaySoundFrontend(-1, "Bed", "WastedSounds", 1)
-                soundPlaying = true
-            end
-
-            local wastedMessage = RequestScaleformMovie("MP_BIG_MESSAGE_FREEMODE")
-
-            if HasScaleformMovieLoaded(wastedMessage) then
-                Citizen.Wait(0)
-
-                PushScaleformMovieFunction(wastedMessage, "SHOW_SHARD_WASTED_MP_MESSAGE")
-                BeginTextComponent("STRING")
-                AddTextComponentString("~r~" .. _U('wasted'))
-                EndTextComponent()
-                PopScaleformMovieFunctionVoid()
-
-                Citizen.Wait(500)
-
-                PlaySoundFrontend(-1, "TextHit", "WastedSounds", 1)
-                while isDead do
-                    DrawScaleformMovieFullscreen(wastedMessage, 255, 255, 255, 255)
-                    Citizen.Wait(0)
-                end
-
-                soundPlaying = false
-            end
+            DrawScaleformMovieFullscreen(wastedMessage, 255, 255, 255, 255)
+            Citizen.Wait(0)
         end
     end)
 end
-
---- Respawn event handler
-AddEventHandler('esx:onPlayerSpawn', function()
-    isDead = false
-end)
 
 --- Death event handler
 AddEventHandler('esx:onPlayerDeath', function(data)
