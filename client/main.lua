@@ -59,7 +59,12 @@ function doRespawn()
         ESX.TriggerServerCallback('esx_nicedeath:onDeath', function()
             isDead = false
             ESX.SetPlayerData('loadout', {})
-            RespawnPed(PlayerPedId(), Config.RespawnPoint.coords, Config.RespawnPoint.heading)
+            if(Config.RandomRespawn) then
+                SpawnPoint = Config.Hospitals[math.random(#Config.Hospitals)]
+                RespawnPed(PlayerPedId(), SpawnPoint.coords, SpawnPoint.heading)
+            else
+                RespawnPed(PlayerPedId(), Config.RespawnPoint.coords, Config.RespawnPoint.heading)
+            end
             StopScreenEffect('DeathFailOut')
             Citizen.Wait(350) -- wait tree fiddy for screen to build
             DoScreenFadeIn(800)

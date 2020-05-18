@@ -4,10 +4,12 @@ ESX plugin that makes death a little bit more configurable.
 
 This plugin has the following features:
 
-- Enables the death screen and let's you see the ragdolling
+- Enables the death screen and lets you see the ragdolling
 - Configurable respawn cooldown
 - Weapons, Items, Cash can be removed on death (but also kept)
-- Configurable respawn location (mt. zonah by default)
+- Configurable respawn location
+    - Mt. Zonah by default
+    - Respawn at random hospital can be enabled in [config.lua](config.lua).
 
 ## Installation
 
