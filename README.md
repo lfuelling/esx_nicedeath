@@ -1,5 +1,8 @@
 # esx_nicedeath
 
+- **If you fork this, you won't get updates.** 
+    - **Consider Starring instead if you don't want to make a contribution.**
+
 ## EN
 ESX plugin that makes death a little bit more configurable.
 
