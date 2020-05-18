@@ -1,6 +1,6 @@
 # esx_nicedeath
 
-EN
+## EN
 ESX plugin that makes death a little bit more configurable.
 
 This plugin has the following features:
@@ -12,7 +12,7 @@ This plugin has the following features:
     - Mt. Zonah by default
     - Respawn at random hospital can be enabled in [config.lua](config.lua).
 
-NL
+## NL
 ESX plugin die de dood wat meer configureerbaar maakt.
 
 Deze plugin heeft de volgende mogelijkheden:
