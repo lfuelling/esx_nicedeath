@@ -1,4 +1,4 @@
-# esx_nicedeath
+# esx_nicedeath [![Latest Release](https://img.shields.io/github/v/release/lfuelling/esx_nicedeath?include_prereleases)](https://github.com/lfuelling/esx_nicedeath/releases)
 
 - **If you fork this, you won't get updates.** 
     - **Consider Starring instead if you don't want to make a contribution.**
