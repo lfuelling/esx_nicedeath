@@ -14,6 +14,18 @@ This plugin has the following features:
 - Configurable respawn location
     - Mt. Zonah by default
     - Respawn at random hospital can be enabled in [config.lua](config.lua).
+    
+## ES
+ESX plugin que hace la muerte un poco mas configurable.
+
+Este plugin tiene las siguientes opciones:
+
+- Habilita la pantalla de muerte y te permite ver el cuerpo
+- Tiempo de reaparicion configurable
+- Armas, Inventario, y dinero pueden ser removidos en un fallecimiento (tambien permite que se queden).
+- Lugar de reaparicion configurable.
+    - El hospital de Mt. Zonah, es la localidad de reaparicion por defecto.
+    - La reaparición en un hospital aleatorio se puede habilitar en [config.lua](config.lua).
 
 ## NL
 ESX plugin die de dood wat meer configureerbaar maakt.
