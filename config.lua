@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Locale = 'en' -- Currently available: en, nl
+Config.Locale = 'en' -- Currently available: en, es, nl
 
 Config.RespawnTimer = 10000 -- time in milliseconds (10s by default)
 Config.RandomRespawn = false
